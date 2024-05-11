@@ -13,10 +13,10 @@
         android:theme="@style/Theme.AgendaMobile"
         tools:targetApi="31">
         <activity
-            android:name=".activity.FormularioNomeActivity"
+            android:name=".ui.activity.FormularioNomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ListaNomesActivity"
+            android:name=".ui.activity.ListaNomesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

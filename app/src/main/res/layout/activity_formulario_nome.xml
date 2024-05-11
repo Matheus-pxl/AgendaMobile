@@ -5,54 +5,57 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ListaNomesActivity">
+    tools:context=".ui.activity.ListaNomesActivity">
 
-    <TextView
-        android:id="@+id/acitivty_campo_nome"
+    <EditText
+        android:id="@+id/lista_campo_nome"
         android:layout_width="360dp"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/nome"
-        android:textAlignment="textStart"
+        android:inputType="textCapWords"
+        android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/activity_campo_telefone"
+    <EditText
+        android:id="@+id/lista_campo_telefone"
         android:layout_width="360dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="@string/telefone"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="@+id/acitivty_campo_nome"
+        android:inputType="phone"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="@+id/lista_campo_nome"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/acitivty_campo_nome"
-        app:layout_constraintTop_toBottomOf="@+id/acitivty_campo_nome" />
+        app:layout_constraintStart_toStartOf="@+id/lista_campo_nome"
+        app:layout_constraintTop_toBottomOf="@+id/lista_campo_nome" />
 
-    <TextView
-        android:id="@+id/activity_campo_email"
+    <EditText
+        android:id="@+id/lista_campo_email"
         android:layout_width="360dp"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="@string/email"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="@+id/activity_campo_telefone"
+        android:inputType="textEmailAddress"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="@+id/lista_campo_telefone"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/activity_campo_telefone"
-        app:layout_constraintTop_toBottomOf="@+id/activity_campo_telefone" />
+        app:layout_constraintStart_toStartOf="@+id/lista_campo_telefone"
+        app:layout_constraintTop_toBottomOf="@+id/lista_campo_telefone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/lista_button_salvar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_campo_email" />
+        app:layout_constraintTop_toBottomOf="@+id/lista_campo_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>
