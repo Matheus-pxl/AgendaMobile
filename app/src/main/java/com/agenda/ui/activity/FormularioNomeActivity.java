@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.agenda.R;
 import com.agenda.dao.AlunoDAO;
@@ -21,14 +19,13 @@ public class FormularioNomeActivity extends AppCompatActivity {
 
         final AlunoDAO dao = new AlunoDAO();
 
-
         final EditText campoNome = findViewById(R.id.lista_campo_nome);
         final EditText campoTelefone = findViewById(R.id.lista_campo_telefone);
         final EditText campoEmail = findViewById(R.id.lista_campo_email);
 
 
         Button botaoSalvar = findViewById(R.id.lista_button_salvar);//bind da view do botao salvar
-        botaoSalvar.setOnClickListener(new View.OnClickListener() {//adicionando interface do click listener no botao salvar
+        botaoSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nome = campoNome.getText().toString();
@@ -37,6 +34,8 @@ public class FormularioNomeActivity extends AppCompatActivity {
 
                 Aluno alunoCriado = new Aluno(nome, telefone, email);
                 dao.salva(alunoCriado);
+
+                startActivity(new Intent(FormularioNomeActivity.this, ListaNomesActivity.class));
 
             }
         });
