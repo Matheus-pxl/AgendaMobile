@@ -2,6 +2,6 @@
     <string name="app_name">AgendaMobile</string>
     <string name="email">Email</string>
     <string name="telefone">Telefone</string>
-    <string name="nome">Nome</string>
+    <string name="contato">Nome</string>
     <string name="salvar">SALVAR</string>
 </resources>
