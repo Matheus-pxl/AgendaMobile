@@ -4,4 +4,5 @@
     <string name="telefone">Telefone</string>
     <string name="contato">Nome</string>
     <string name="salvar">SALVAR</string>
+    <string name="remover">Remover</string>
 </resources>

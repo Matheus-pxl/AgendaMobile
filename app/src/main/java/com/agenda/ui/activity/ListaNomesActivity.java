@@ -39,14 +39,18 @@ public class ListaNomesActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add("Remover");//adicionando um menu de contexto para remover um contato
+        //menu.add("Remover");//adicionando um menu de contexto para remover um contato
+        getMenuInflater().inflate(R.menu.activity_lista_contato_menu, menu);//para usar o MENU activity_lista_contato_menu precisa usar o menu inflater
     }
-
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
-        Contato alunoEscolhido = adapter.getItem(menuInfo.position);                            //buscando o contato pela posição
-        remove(alunoEscolhido);                                                                 //removendo contato da posiçao selecionada
+        int itemId = item.getItemId();//buscando o ID
+
+        if(itemId == R.id.activity_lista_nome_menu_remover){//verificando se esta clicando no botao de remoção correto -> "Remover"
+            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
+            Contato alunoEscolhido = adapter.getItem(menuInfo.position);    //buscando o contato pela posição
+            remove(alunoEscolhido);
+        }
         return super.onContextItemSelected(item);
 
     }
