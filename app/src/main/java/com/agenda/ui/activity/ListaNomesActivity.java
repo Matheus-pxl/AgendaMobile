@@ -32,6 +32,9 @@ public class ListaNomesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_nomes);
         configuraFabNovoAluno();
         configuraLista();
+        for(int i=0;i<100099;i++){
+        dao.salva(new Contato("Alex", "1122223333", "alex@alura.com.br"));
+        }
 //        dao.salva(new Nome("Alex", "1122223333", "alex@alura.com.br"));
 
     }

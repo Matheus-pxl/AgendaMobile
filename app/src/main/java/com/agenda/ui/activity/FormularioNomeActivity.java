@@ -2,9 +2,14 @@ package com.agenda.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agenda.R;
@@ -25,8 +30,23 @@ public class FormularioNomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_formulario_nome);
         setTitle("Novo contato");
         inicializacaoCampos();
-        configuraBotaoSalvar();
         carregaAluno();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) { // inflando bptao salvar no formulario
+        getMenuInflater().inflate(R.menu.activity_formulario_contato_menu, menu); // APENAS inflando com o activity_formulario_contato_menu
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // procurando o id e verificando qual botao apertou para finalizar o formulario
+        int itemId = item.getItemId();
+        if(itemId==R.id.activity_formulario_contato_salvar){
+            finalizarFormulario();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void carregaAluno() {
@@ -45,14 +65,6 @@ public class FormularioNomeActivity extends AppCompatActivity {
         campoNome.setText(contato.getNome());
         campoTelefone.setText(contato.getTelefone());
         campoEmail.setText(contato.getEmail());
-    }
-
-    private void configuraBotaoSalvar() {
-        Button botaoSalvar = findViewById(R.id.lista_button_salvar);//bind da view do botao salvar
-        botaoSalvar.setOnClickListener(v -> {
-
-            finalizarFormulario();
-        });
     }
 
     private void finalizarFormulario() {
