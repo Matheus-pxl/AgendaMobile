@@ -4,6 +4,8 @@
 
     <item android:id="@+id/activity_formulario_contato_salvar"
         app:showAsAction="always"
+        android:icon="@drawable/ic_action_name"
         android:title="@string/salvar" />
+<!--    quando a imagem possui um icone, o title fica como uma descrição do botao-->
 
 </menu>

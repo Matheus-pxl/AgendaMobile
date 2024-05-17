@@ -34,14 +34,14 @@ public class FormularioNomeActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) { // inflando bptao salvar no formulario
+    public boolean onCreateOptionsMenu(Menu menu) { // inflando botao salvar no formulario
         getMenuInflater().inflate(R.menu.activity_formulario_contato_menu, menu); // APENAS inflando com o activity_formulario_contato_menu
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // procurando o id e verificando qual botao apertou para finalizar o formulario
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { // buscando o id e verificando qual botao apertou para finalizar o formulario
         int itemId = item.getItemId();
         if(itemId==R.id.activity_formulario_contato_salvar){
             finalizarFormulario();

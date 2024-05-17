@@ -33,8 +33,8 @@ public class Contato implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return nome;
-    }
+        return nome + " - "+ telefone;
+    }//MOSTRA o nome e do telefone do contato na lista
 
     public void setId(int id) {
         this.id = id;

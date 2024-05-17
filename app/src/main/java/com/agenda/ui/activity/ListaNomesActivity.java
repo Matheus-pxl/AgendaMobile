@@ -1,12 +1,17 @@
 package com.agenda.ui.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,13 +21,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.agenda.R;
 import com.agenda.dao.ContatoDAO;
 import com.agenda.model.Contato;
+import com.agenda.ui.adapter.ListaContatosAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListaNomesActivity extends AppCompatActivity {
-        private final ContatoDAO dao = new ContatoDAO();
-    private ArrayAdapter<Contato> adapter;
+    private final ContatoDAO dao = new ContatoDAO();
+
+    private ListaContatosAdapter adapter;
 
     // quando colocamos o AppCompatActivity, ele vai manter a App bar com o título do nosso projeto, que no caso é "Agenda".
     @Override
@@ -32,10 +40,6 @@ public class ListaNomesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_nomes);
         configuraFabNovoAluno();
         configuraLista();
-        for(int i=0;i<100099;i++){
-        dao.salva(new Contato("Alex", "1122223333", "alex@alura.com.br"));
-        }
-//        dao.salva(new Nome("Alex", "1122223333", "alex@alura.com.br"));
 
     }
 
@@ -45,17 +49,33 @@ public class ListaNomesActivity extends AppCompatActivity {
         //menu.add("Remover");//adicionando um menu de contexto para remover um contato
         getMenuInflater().inflate(R.menu.activity_lista_contato_menu, menu);//para usar o MENU activity_lista_contato_menu precisa usar o menu inflater
     }
+
     @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {//SELECIONANDO MENU CONTEXTO DE REMOVER CONTATO (ativo quando segurar o contato)
         int itemId = item.getItemId();//buscando o ID
 
-        if(itemId == R.id.activity_lista_nome_menu_remover){//verificando se esta clicando no botao de remoção correto -> "Remover"
-            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
-            Contato alunoEscolhido = adapter.getItem(menuInfo.position);    //buscando o contato pela posição
-            remove(alunoEscolhido);
+        if (itemId == R.id.activity_lista_nome_menu_remover) {//verificando se esta clicando no botao de remoção correto -> "Remover"
+            confirmaRemocao(item);
+
         }
         return super.onContextItemSelected(item);
 
+    }
+
+    private void confirmaRemocao(@NonNull final MenuItem item) {
+        new AlertDialog.Builder(this).
+                setTitle("Removendo contato!").
+                setMessage("Tem certeza que deseja remover este contato?").
+                setPositiveButton("Sim", new DialogInterface.OnClickListener() {//implementação do clique  "sim" do dialog REMOVER
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
+                        Contato contatoEscolhido = adapter.getItem(menuInfo.position);    //buscando o contato pela posição
+                        remove(contatoEscolhido);//removendo contato
+                    }
+                }).
+                setNegativeButton("Não",null).//
+                show();  //DIALOG DE ALERTA PARA QUANDO CLICAR NO BOTAO REMOVER
     }
 
     private void configuraFabNovoAluno() {
@@ -70,14 +90,13 @@ public class ListaNomesActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         atualizaContatos();
     }
 
     private void atualizaContatos() {
-        adapter.clear();
-        adapter.addAll(dao.todos());
+        adapter.atualiza(dao.todos());
     }
 
     private void configuraLista() {
@@ -106,8 +125,9 @@ public class ListaNomesActivity extends AppCompatActivity {
         startActivity(vaiParaFormularioActivity);
     }
 
-    private void configuraAdapter(ListView listaNomes) {
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);//tornando o adapter atributo da classe
-        listaNomes.setAdapter(adapter); //implementando adapter na listview
+    private void configuraAdapter(ListView listaNomes) {      // o adapter nao aceita um layout com mais de um textview, é preciso criar um adapter PERSONALIZADO
+        adapter = new ListaContatosAdapter(this);
+
+        listaNomes.setAdapter(adapter);
     }
 }
