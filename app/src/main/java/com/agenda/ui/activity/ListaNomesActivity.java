@@ -1,27 +1,23 @@
 package com.agenda.ui.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agenda.R;
-import com.agenda.dao.ContatoDAO;
 import com.agenda.model.Contato;
-import com.agenda.ui.adapter.ListaContatosAdapter;
+import com.agenda.ui.ListaContatosView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ListaNomesActivity extends AppCompatActivity {
-    private final ContatoDAO dao = new ContatoDAO();
 
-    private ListaContatosAdapter adapter;
+    private final ListaContatosView listaContatosView = new ListaContatosView(this);
 
     // quando colocamos o AppCompatActivity, ele vai manter a App bar com o título do nosso projeto, que no caso é "Agenda".
     @Override
@@ -46,26 +42,14 @@ public class ListaNomesActivity extends AppCompatActivity {
         int itemId = item.getItemId();//buscando o ID
 
         if (itemId == R.id.activity_lista_nome_menu_remover) {//verificando se esta clicando no botao de remoção correto -> "Remover"
-            confirmaRemocao(item);
+            listaContatosView.confirmaRemocao(item);
 
         }
         return super.onContextItemSelected(item);
 
     }
 
-    private void confirmaRemocao(@NonNull final MenuItem item) {
-        //implementação do clique  "sim" do dialog REMOVER
-        new AlertDialog.Builder(this).
-                setTitle("Removendo contato!").
-                setMessage("Tem certeza que deseja remover este contato?").
-                setPositiveButton("Sim", (dialog, which) -> {
-                    AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
-                    Contato contatoEscolhido = adapter.getItem(menuInfo.position);    //buscando o contato pela posição
-                    remove(contatoEscolhido);//removendo contato
-                }).
-                setNegativeButton("Não",null).//
-                show();  //DIALOG DE ALERTA PARA QUANDO CLICAR NO BOTAO REMOVER
-    }
+
 
     private void configuraFabNovoAluno() {
         FloatingActionButton botaoNovoAluno = findViewById(R.id.lista_fab_novo_aluno);//primeiro é feito o bind do FLOATING BUTTON
@@ -81,25 +65,18 @@ public class ListaNomesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        atualizaContatos();
+        listaContatosView.atualizaContatos();
     }
 
-    private void atualizaContatos() {
-        adapter.atualiza(dao.todos());
-    }
 
     private void configuraLista() {
         ListView listaNomes = findViewById(R.id.lista_nomes); //bind da list view
-        configuraAdapter(listaNomes);
+        listaContatosView.configuraAdapter(listaNomes);
         configuraListenerDeClickPorItem(listaNomes);
         registerForContextMenu(listaNomes);//registando o botao de contexto para remover contato
 
     }
 
-    private void remove(Contato contato) {
-        dao.remove(contato);//remove contato da view
-        adapter.remove(contato);//remove contato do dao
-    }
 
     private void configuraListenerDeClickPorItem(ListView listaNomes) {
         listaNomes.setOnItemClickListener((adapterView, view, posicao, id) -> {
@@ -114,9 +91,5 @@ public class ListaNomesActivity extends AppCompatActivity {
         startActivity(vaiParaFormularioActivity);
     }
 
-    private void configuraAdapter(ListView listaNomes) {      // o adapter nao aceita um layout com mais de um textview, é preciso criar um adapter PERSONALIZADO
-        adapter = new ListaContatosAdapter(this);
 
-        listaNomes.setAdapter(adapter);
-    }
 }
