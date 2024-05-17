@@ -9,7 +9,7 @@
         android:id="@+id/item_contato_nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="nome"
+        android:hint="@string/nome"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="24sp"
         android:layout_margin="8dp"

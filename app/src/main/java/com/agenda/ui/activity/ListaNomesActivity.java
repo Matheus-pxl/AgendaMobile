@@ -1,19 +1,13 @@
 package com.agenda.ui.activity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,9 +17,6 @@ import com.agenda.dao.ContatoDAO;
 import com.agenda.model.Contato;
 import com.agenda.ui.adapter.ListaContatosAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListaNomesActivity extends AppCompatActivity {
     private final ContatoDAO dao = new ContatoDAO();
@@ -63,16 +54,14 @@ public class ListaNomesActivity extends AppCompatActivity {
     }
 
     private void confirmaRemocao(@NonNull final MenuItem item) {
+        //implementação do clique  "sim" do dialog REMOVER
         new AlertDialog.Builder(this).
                 setTitle("Removendo contato!").
                 setMessage("Tem certeza que deseja remover este contato?").
-                setPositiveButton("Sim", new DialogInterface.OnClickListener() {//implementação do clique  "sim" do dialog REMOVER
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
-                        Contato contatoEscolhido = adapter.getItem(menuInfo.position);    //buscando o contato pela posição
-                        remove(contatoEscolhido);//removendo contato
-                    }
+                setPositiveButton("Sim", (dialog, which) -> {
+                    AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();//convertando menu info para menuinfo do adapter view
+                    Contato contatoEscolhido = adapter.getItem(menuInfo.position);    //buscando o contato pela posição
+                    remove(contatoEscolhido);//removendo contato
                 }).
                 setNegativeButton("Não",null).//
                 show();  //DIALOG DE ALERTA PARA QUANDO CLICAR NO BOTAO REMOVER
