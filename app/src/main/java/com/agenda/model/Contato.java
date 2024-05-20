@@ -1,15 +1,22 @@
 package com.agenda.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity
 public class Contato implements Serializable {
+    //toda entidade precisa de uma primary key
+    @PrimaryKey(autoGenerate = true)
     private int id=0;
     private  String nome;
     private  String telefone;
     private  String email;
 
+    @Ignore
     public Contato(String nome, String telefone, String email) {
         this.nome = nome;
         this.telefone = telefone;

@@ -11,14 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgendaMobile"
-        tools:targetApi="31"
-        android:name=".AgendaApplication">
+        tools:targetApi="31">
 
         <activity
-            android:name=".ui.activity.FormularioNomeActivity"
+            android:name=".ui.activity.FormularioContatoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.ListaNomesActivity"
+            android:name=".ui.activity.ListaContatosActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

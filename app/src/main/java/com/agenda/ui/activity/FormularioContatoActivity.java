@@ -8,24 +8,28 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.agenda.R;
-import com.agenda.dao.ContatoDAO;
+import com.agenda.database.AgendaDatabase;
+import com.agenda.database.dao.RoomContatoDao;
 import com.agenda.model.Contato;
 
-public class FormularioNomeActivity extends AppCompatActivity {
+public class FormularioContatoActivity extends AppCompatActivity {
 
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    private final ContatoDAO dao = new ContatoDAO();
+    private RoomContatoDao dao;
     private Contato contato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_nome);
-        setTitle("Novo contato");
+
+        AgendaDatabase database = AgendaDatabase.getInstance(this);
+        dao = database.getRoomContatoDAO();
         inicializacaoCampos();
         carregaAluno();
     }

@@ -7,21 +7,24 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import com.agenda.dao.ContatoDAO;
+import com.agenda.database.AgendaDatabase;
+import com.agenda.database.dao.RoomContatoDao;
 import com.agenda.model.Contato;
 import com.agenda.ui.adapter.ListaContatosAdapter;
 
 public class ListaContatosView {
 
-    private final ContatoDAO dao;
+    private final RoomContatoDao dao;
     private final ListaContatosAdapter adapter;
     private final Context context;
 
     public ListaContatosView(Context context) {
         this.context = context;
         this.adapter = new ListaContatosAdapter(this.context);
-        this.dao = new ContatoDAO();
+        dao = AgendaDatabase.getInstance(context).getRoomContatoDAO();
     }
 
     public void confirmaRemocao(@NonNull final MenuItem item) {
@@ -48,7 +51,6 @@ public class ListaContatosView {
         adapter.remove(contato);//remove contato do dao
     }
     public void configuraAdapter(ListView listaNomes) {      // o adapter nao aceita um layout com mais de um textview, é preciso criar um adapter PERSONALIZADO
-
 
         listaNomes.setAdapter(adapter);
     }

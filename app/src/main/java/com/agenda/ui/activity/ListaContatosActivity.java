@@ -15,16 +15,17 @@ import com.agenda.model.Contato;
 import com.agenda.ui.ListaContatosView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ListaNomesActivity extends AppCompatActivity {
+public class ListaContatosActivity extends AppCompatActivity {
 
-    private final ListaContatosView listaContatosView = new ListaContatosView(this);
+    private  ListaContatosView listaContatosView;
 
     // quando colocamos o AppCompatActivity, ele vai manter a App bar com o título do nosso projeto, que no caso é "Agenda".
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Agenda");
         setContentView(R.layout.activity_lista_nomes);
+        setTitle("Agenda");
+        listaContatosView = new ListaContatosView(this);
         configuraFabNovoAluno();
         configuraLista();
 
@@ -59,7 +60,7 @@ public class ListaNomesActivity extends AppCompatActivity {
     }
 
     private void abreFormularioModoInsereContato() {
-        startActivity(new Intent(ListaNomesActivity.this, FormularioNomeActivity.class));//referencia da activity que voce esta, activity que voce quer ir(no caso lista de nomes, indo para formulario
+        startActivity(new Intent(ListaContatosActivity.this, FormularioContatoActivity.class));//referencia da activity que voce esta, activity que voce quer ir(no caso lista de nomes, indo para formulario
     }
 
     @Override
@@ -86,7 +87,7 @@ public class ListaNomesActivity extends AppCompatActivity {
     }
 
     private void abreFormularioModoEditaContato(Contato contato) {
-        Intent vaiParaFormularioActivity = new Intent(ListaNomesActivity.this, FormularioNomeActivity.class);
+        Intent vaiParaFormularioActivity = new Intent(ListaContatosActivity.this, FormularioContatoActivity.class);
         vaiParaFormularioActivity.putExtra("nome", contato); // para mandar DADOS VIA EXTRA ele precisa ser "serializable"
         startActivity(vaiParaFormularioActivity);
     }
