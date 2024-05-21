@@ -21,17 +21,6 @@ public class Contato implements Serializable {
     private String sobrenome;
     private Calendar momentoDeCadastro = Calendar.getInstance(); //
 
-    @Ignore
-    public Contato(String nome, String telefone, String email, String sobrenome) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.sobrenome = sobrenome;
-    }
-
-    public Contato() {
-
-    }
 
     public String getNome() {return nome;}
 
