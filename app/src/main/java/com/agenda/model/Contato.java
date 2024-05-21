@@ -6,21 +6,27 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 @Entity
 public class Contato implements Serializable {
     //toda entidade precisa de uma primary key
+    //TODA VEZ QUE MEDIFICAR UMA ENTIDADE, É NECESSARIO MUDAR A VERSAO
     @PrimaryKey(autoGenerate = true)
     private int id=0;
     private  String nome;
     private  String telefone;
     private  String email;
+    private String sobrenome;
+    private Calendar momentoDeCadastro = Calendar.getInstance(); //
 
     @Ignore
-    public Contato(String nome, String telefone, String email) {
+    public Contato(String nome, String telefone, String email, String sobrenome) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+        this.sobrenome = sobrenome;
     }
 
     public Contato() {
@@ -36,7 +42,6 @@ public class Contato implements Serializable {
     public String getEmail() {
         return email;
     }
-
     @NonNull
     @Override
     public String toString() {
@@ -59,11 +64,34 @@ public class Contato implements Serializable {
         this.email = email;
     }
 
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
     public int getId() {
         return id;
     }
 
     public boolean temIdValido() {
         return id > 0;
+    }
+
+    public String getNomeCompleto() {
+        return nome + " " +sobrenome;
+    }
+
+    public Calendar getMomentoDeCadastro() {
+        return momentoDeCadastro;
+    }
+
+    public void setMomentoDeCadastro(Calendar momentoDeCadastro) {
+        this.momentoDeCadastro = momentoDeCadastro;
+    }
+    public String dataFormatada(){
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        return formatador.format(momentoDeCadastro.getTime());
     }
 }

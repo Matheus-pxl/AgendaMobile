@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--SCROLL VIEW PARA OS FILHOS PODEREM USAR O CONTEUDO DE ROLAMENTO NAS VIEWS, ELE POSSUI APENAS UMA FILHA-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,30 +27,42 @@
             android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/lista_campo_telefone"
+            android:id="@+id/lista_campo_sobrenome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:hint="@string/telefone"
-            android:inputType="phone"
+            android:hint="@string/sobrenome"
+            android:importantForAutofill="no"
+            android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="@+id/lista_campo_nome"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/lista_campo_nome"
-            app:layout_constraintTop_toBottomOf="@+id/lista_campo_nome"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/lista_campo_nome" />
+
+        <EditText
+            android:id="@+id/lista_campo_telefone"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            android:hint="@string/telefone"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="@+id/lista_campo_sobrenome"
+            app:layout_constraintStart_toStartOf="@+id/lista_campo_sobrenome"
+            app:layout_constraintTop_toBottomOf="@+id/lista_campo_sobrenome" />
 
         <EditText
             android:id="@+id/lista_campo_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:layout_marginTop="40dp"
             android:hint="@string/email"
+            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="@+id/lista_campo_telefone"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/lista_campo_telefone"
-            app:layout_constraintTop_toBottomOf="@+id/lista_campo_telefone"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/lista_campo_telefone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

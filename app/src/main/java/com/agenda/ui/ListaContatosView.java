@@ -7,9 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.room.Room;
 
-import com.agenda.dao.ContatoDAO;
 import com.agenda.database.AgendaDatabase;
 import com.agenda.database.dao.RoomContatoDao;
 import com.agenda.model.Contato;

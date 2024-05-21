@@ -8,7 +8,6 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.agenda.R;
 import com.agenda.database.AgendaDatabase;
@@ -18,6 +17,7 @@ import com.agenda.model.Contato;
 public class FormularioContatoActivity extends AppCompatActivity {
 
     private EditText campoNome;
+    private EditText campoSobrenome;
     private EditText campoTelefone;
     private EditText campoEmail;
     private RoomContatoDao dao;
@@ -66,6 +66,7 @@ public class FormularioContatoActivity extends AppCompatActivity {
         campoNome.setText(contato.getNome());
         campoTelefone.setText(contato.getTelefone());
         campoEmail.setText(contato.getEmail());
+        campoSobrenome.setText(contato.getSobrenome());
     }
 
     private void finalizarFormulario() {
@@ -80,16 +81,19 @@ public class FormularioContatoActivity extends AppCompatActivity {
 
     private void inicializacaoCampos() {
         campoNome = findViewById(R.id.lista_campo_nome);
+        campoSobrenome= findViewById(R.id.lista_campo_sobrenome);
         campoTelefone = findViewById(R.id.lista_campo_telefone);
         campoEmail = findViewById(R.id.lista_campo_email);
     }
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
+        String sobrenome = campoSobrenome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
 
         this.contato.setNome(nome);
+        this.contato.setSobrenome(sobrenome);
         this.contato.setTelefone(telefone);
         this.contato.setEmail(email);
     }

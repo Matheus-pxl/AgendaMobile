@@ -46,10 +46,12 @@ public class ListaContatosAdapter extends BaseAdapter {
 
     private static void vinculandoInformacoes(View view, Contato contato) {
         TextView nomeContato = view.findViewById(R.id.item_contato_nome);
-        nomeContato.setText(contato.getNome());
+        nomeContato.setText(contato.getNomeCompleto() + " "+ contato.dataFormatada());//bindd do nome completo + data formatada da criaçao do contato
 
         TextView contatoTelefone = view.findViewById(R.id.item_contato_telefone);
         contatoTelefone.setText(contato.getTelefone());
+
+
     }
 
     private View criaView(ViewGroup viewGroup) {
