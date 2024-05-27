@@ -19,6 +19,7 @@ public class FormularioContatoActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoSobrenome;
     private EditText campoTelefone;
+    private EditText campoCelular;
     private EditText campoEmail;
     private RoomContatoDao dao;
     private Contato contato;
@@ -67,6 +68,7 @@ public class FormularioContatoActivity extends AppCompatActivity {
         campoTelefone.setText(contato.getTelefone());
         campoEmail.setText(contato.getEmail());
         campoSobrenome.setText(contato.getSobrenome());
+        campoCelular.setText(contato.getCelular());
     }
 
     private void finalizarFormulario() {
@@ -84,17 +86,20 @@ public class FormularioContatoActivity extends AppCompatActivity {
         campoSobrenome= findViewById(R.id.lista_campo_sobrenome);
         campoTelefone = findViewById(R.id.lista_campo_telefone);
         campoEmail = findViewById(R.id.lista_campo_email);
+        campoCelular =findViewById(R.id.lista_campo_celular);
     }
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
         String sobrenome = campoSobrenome.getText().toString();
         String telefone = campoTelefone.getText().toString();
+        String celular = campoCelular.getText().toString();
         String email = campoEmail.getText().toString();
 
         this.contato.setNome(nome);
         this.contato.setSobrenome(sobrenome);
         this.contato.setTelefone(telefone);
+        this.contato.setCelular(celular);
         this.contato.setEmail(email);
     }
 }

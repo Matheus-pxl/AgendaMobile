@@ -19,6 +19,7 @@ public class Contato implements Serializable {
     private  String telefone;
     private  String email;
     private String sobrenome;
+    private String celular;
     private Calendar momentoDeCadastro = Calendar.getInstance(); //
 
 
@@ -82,5 +83,13 @@ public class Contato implements Serializable {
     public String dataFormatada(){
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
         return formatador.format(momentoDeCadastro.getTime());
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 }
