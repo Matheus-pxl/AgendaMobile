@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_margin="20dp"
-            android:hint="@string/telefone"
+            android:hint="@string/celular"
             android:importantForAutofill="no"
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="@+id/lista_campo_telefone"
