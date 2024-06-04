@@ -8,16 +8,19 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import com.agenda.database.converter.ConversorCalendar;
+import com.agenda.database.converter.ConversorTipoTelefone;
 import com.agenda.database.dao.RoomContatoDao;
 import com.agenda.database.dao.TelefoneDAO;
 import com.agenda.model.Contato;
+import com.agenda.model.Telefone;
 
-@Database(entities = {Contato.class}, version = 4, exportSchema = false)
+@Database(entities = {Contato.class, Telefone.class}, version = 6, exportSchema = false)
 //precisa definir a classe ENTIDADE
-@TypeConverters({ConversorCalendar.class})
+@TypeConverters({ConversorCalendar.class, ConversorTipoTelefone.class})
 public abstract class AgendaDatabase extends RoomDatabase {
 
     //definir a classe ABSTRACT nao é necessario implementar os argumentos
+    //toda vez que for feita uma alteração é necessario redefinir a VERSAO do banco de dados
     private static String NOME_BANCO_DE_DADOS = "agenda.db";
 
     public abstract RoomContatoDao getRoomContatoDAO();

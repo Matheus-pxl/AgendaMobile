@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 public class Contato implements Serializable {
@@ -16,17 +17,21 @@ public class Contato implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id=0;
     private  String nome;
-    private  String telefone;
     private  String email;
     private String sobrenome;
     private Calendar momentoDeCadastro = Calendar.getInstance(); //
+    private List<Telefone> telefones;
 
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
 
     public String getNome() {return nome;}
 
-    public String getTelefone() {
-        return telefone;
-    }
 
     public String getEmail() {
         return email;
@@ -34,7 +39,7 @@ public class Contato implements Serializable {
     @NonNull
     @Override
     public String toString() {
-        return nome + " - "+ telefone;
+        return nome + " - ";
     }//MOSTRA o nome e do telefone do contato na lista
 
     public void setId(int id) {
@@ -45,9 +50,6 @@ public class Contato implements Serializable {
         this.nome = nome;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
 
     public void setEmail(String email) {
         this.email = email;

@@ -7,4 +7,5 @@
     <string name="remover">Remover</string>
     <string name="nome">nome</string>
     <string name="sobrenome">Sobrenome</string>
+    <string name="celular">Celular</string>
 </resources>
