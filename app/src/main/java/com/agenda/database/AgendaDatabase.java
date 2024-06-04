@@ -3,14 +3,13 @@ package com.agenda.database;
 import static com.agenda.database.AgendaMigrations.TODAS_MIGRATIONS;
 
 import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-
 import com.agenda.database.converter.ConversorCalendar;
 import com.agenda.database.dao.RoomContatoDao;
+import com.agenda.database.dao.TelefoneDAO;
 import com.agenda.model.Contato;
 
 @Database(entities = {Contato.class}, version = 4, exportSchema = false)
@@ -29,5 +28,6 @@ public abstract class AgendaDatabase extends RoomDatabase {
 
     }
 
+    public abstract TelefoneDAO getTelefoneDAO();
 
 }
