@@ -8,17 +8,27 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 public class Contato implements Serializable {
     //toda entidade precisa de uma primary key
     //TODA VEZ QUE MEDIFICAR UMA ENTIDADE, É NECESSARIO MUDAR A VERSAO
     @PrimaryKey(autoGenerate = true)
-    private int id = 0;
+    private int id=0;
     private  String nome;
     private  String email;
     private String sobrenome;
     private Calendar momentoDeCadastro = Calendar.getInstance(); //
+    private List<Telefone> telefones;
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
 
     public String getNome() {return nome;}
 
